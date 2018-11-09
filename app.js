@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 var corsOptions = {
-    origin: 'http://localhost:3001',
+    origin: process.env.REACT_ORIGIN_URL || 'http://localhost:3001',
     credentials: true,
 }
 app.use(cors(corsOptions));
