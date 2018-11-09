@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var userCtl = require('./../controllers/userController');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
+router.post('/signup',userCtl.signUpUser);
+router.post('/signin',userCtl.signInUser);
+router.post('/edituser',userCtl.editUserProfile);
+router.get('/getusertasks',userCtl.getUserTasksByEmail);
+router.get('/validatesession',userCtl.validateSession);
+router.get('/logout',userCtl.logout);
 module.exports = router;

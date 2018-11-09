@@ -65,5 +65,8 @@ typings/
 # webstorm ignore file
 *.idea
 
+# DS_Store
+.DS_Store
+
 
 

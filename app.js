@@ -1,30 +1,62 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var cors = require('cors');
+var mongoSessionURL = "mongodb://smartadmin:tiger123@ds257077.mlab.com:57077/smart-task-db";
+var expressSessions = require("express-session");
+var mongoStore = require("connect-mongo/es5")(expressSessions);
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
+var index = require('./routes/index');
+var users = require('./routes/users');
+var tasks = require('./routes/tasks');
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+var corsOptions = {
+    origin: 'http://localhost:3001',
+    credentials: true,
+}
+app.use(cors(corsOptions));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressSessions({
+    cookieName: 'session',
+    secret: "CMPE280_patriots",
+    resave: false,
+    saveUninitialized: false,
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 6 * 1000,
+    store: new mongoStore({
+        url: mongoSessionURL
+    })
+}));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
+app.use('/', index);
+app.use('/users', users);
+/*app.get('/tasks/addtask', function (req, res) {
+    console.log(req.session.user);
+    res.end();
+});*/
+app.use('/tasks', tasks);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handler
