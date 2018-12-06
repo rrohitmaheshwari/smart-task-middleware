@@ -134,9 +134,8 @@ module.exports.validateSession = function (req, res, next) {
 }
 
 module.exports.logout = function (req, res, next) {
-    console.log(req.session.destroy());
-
-
+    req.session.destroy();
+    res.status(200).json({status: 200, result: {msg: 'User Logged out Successfully!'}})
 }
 
 module.exports.renderSignup = function (req, res) {
