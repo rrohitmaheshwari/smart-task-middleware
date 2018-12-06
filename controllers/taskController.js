@@ -100,6 +100,7 @@ module.exports.fetchAllTasks = function (req, res) {
     let tasks = [];
     for (let i = 0; i < taskResult.length; i++) {
       tasks.push({
+        description: taskResult[i].description,
         owner: taskResult[i].owner,
         assignee: taskResult[i].assignee,
         status: taskResult[i].status,
