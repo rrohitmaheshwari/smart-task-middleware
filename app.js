@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSessions({
     cookieName: 'session',
-    secret: "CMPE280_patriots",
+    secret: "CMPE280_optimize",
     resave: false,
     saveUninitialized: false,
     duration: 30 * 60 * 1000,

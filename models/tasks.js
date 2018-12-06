@@ -81,10 +81,14 @@ function deleteTask(condition, callback){
   Tasks.deleteOne(condition, callback);
 }
 
+function fetchAll(callback){
+	Tasks.find({},callback);
+}
 
 module.exports.addNewTask = addNewTask;
 module.exports.getTaskById = getTaskById;
 module.exports.getTasksByEmail = getTasksByEmail;
 module.exports.updateTask = updateTask;
 module.exports.deleteTask = deleteTask;
+module.exports.fetchAll = fetchAll;
 module.exports.Tasks = Tasks;
