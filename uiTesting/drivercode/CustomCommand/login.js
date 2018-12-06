@@ -1,6 +1,6 @@
 let testConfig = require('../../drivercode/testConfig.json');
 
-exports.command = function(username, password) {
+exports.command = function (username, password) {
     this
         .url(testConfig.url)
         .pause(1000)

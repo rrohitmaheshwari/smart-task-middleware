@@ -6,7 +6,7 @@ Command:
     npm run nightwatch --test uitesting/tests/1_Login.js
 */
 module.exports = {
-    'User Login': function(browser) {
+    'User Login': function (browser) {
         browser
             .login(testConfig.username, testConfig.password)
             .logout()
