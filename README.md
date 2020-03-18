@@ -8,3 +8,8 @@ SmartTask is an easier and smarter way to manage your tasks. When working in a t
 to visualize the productivity of the individual or the team over time.
 2. Software development methodologies are employed in the industry, so our application may
 Work as an Agile dashboard.
+
+Front end of this application can be found at-
+https://github.com/rrohitmaheshwari/smart-task
+
+
